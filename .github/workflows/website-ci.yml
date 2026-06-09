@@ -19,23 +19,19 @@ jobs:
 
       - name: Build Stage
         run: |
-          echo "Building website..."
-          ls -la
+          mkdir build
+          cp index.html build/
 
       - name: Test Stage
         run: |
-          echo "Testing website..."
-          test -f index.html
+          test -f build/index.html
 
-      - name: Package Stage
-        run: |
-          mkdir output
-          cp index.html output/
-
-      - name: Deploy Stage
-        run: |
-          echo "Deploying application..."
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-build
+          path: build/
 
       - name: Success
         run: |
-          echo "CI/CD Pipeline completed successfully!"
+          echo "Build completed successfully!"
