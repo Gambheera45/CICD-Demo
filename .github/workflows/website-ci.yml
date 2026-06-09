@@ -1,0 +1,23 @@
+name: Website CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify HTML File Exists
+        run: |
+          echo "Checking website files..."
+          ls -la
+          test -f index.html
+
+      - name: CI Success
+        run: echo "Pipeline completed successfully!"
