@@ -10,14 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Verify HTML File Exists
+      - name: Build Stage
         run: |
-          echo "Checking website files..."
+          echo "Building website..."
           ls -la
+
+      - name: Test Stage
+        run: |
+          echo "Testing website..."
           test -f index.html
 
-      - name: CI Success
-        run: echo "Pipeline completed successfully!"
+      - name: Package Stage
+        run: |
+          mkdir output
+          cp index.html output/
+
+      - name: Deploy Stage
+        run: |
+          echo "Deploying application..."
+
+      - name: Success
+        run: |
+          echo "CI/CD Pipeline completed successfully!"
